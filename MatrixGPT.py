@@ -1,6 +1,8 @@
 import random
 import time
 
+# The great failures of AI
+
 # List of characters to be used for the falling effect
 characters = [
     "0",
