@@ -1,8 +1,10 @@
 from random import randint
 from time import sleep, time
 import colorama as cl
-from colors import *
 import os
+
+# Import the settings
+from settings import *
 
 # Disable text wrap
 # Set the LINES environment variable to 0
@@ -11,29 +13,6 @@ import os
 # # Disable Auto Scroll
 # os.environ["scrolloff"] = "0"
 
-
-# Monospace letter sizes
-letter_height = 20
-letter_width = 10
-
-##############################################################
-####################### GridDimensions #######################
-grid_width = 150
-grid_height = 80
-grid_height = int(grid_height * letter_width // letter_height)
-
-
-#############################################################
-####################### Color Configs #######################
-cl_primary = cl_white
-trail_prim = cl_lightgreen
-trail_sec = cl_green
-
-
-##############################################################
-######################### Settings ###########################
-common_start = True
-max_lines = int(grid_width * 0.8)
 
 cl.init()
 print("\033[?25l", end="")
@@ -54,8 +33,8 @@ class Digit:
 
         self.pos_float = pos
         self.pos = int(self.pos_float)
-        self.speed = randint(70, 100)
-        self.speed /= 200
+        self.speed = randint(40, 100)
+        self.speed /= 100
         self.max_length = randint(int(0.2 * grid_height), int(0.7 * grid_height))
 
         self.letter = letters[randint(0, n_letters - 1)]
@@ -142,41 +121,20 @@ class Digit:
         # self.colour()
 
 
-##### Avoid these character sets #####
-hebrew = "אבגדהוזחטיכלמננסעפצקרשת"
-korean = "ㄱㄲㄴㄷㄸㄹㅁㅂㅃㅅㅆㅇㅈㅉㅊㅋㅌㅍㅎㅏㅐㅑㅒㅓㅔㅕㅖㅗㅚㅛㅜㅠㅡㅢㅣ"
-##### Avoid these character sets #####
-
-
-greek = "αβγδεζηθικλμνξοπρστυφχψωΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩ"
-cyrillic = "АаБбВвГгДдЕеЁёЖжЗзИиЙйКкЛлМмНнОоПпРрСсТтУуФфХхЦцЧчШшЩщЪъЫыЬьЭэЮюЯя"
-unique_english = "ůŭŧńşźżñçéáíóúàèìòùœžšžćčđłńó÷øðþæıȷȷłńó÷øðþæ"
-kb_symbols = "~!@#$%^&*()_+-={}[]|\\;:<>?/"
-english_letters = "qwertyuiopasdfghjklzxcvbnm"
-numbers = "1234567890"
-letters = greek + cyrillic + unique_english + kb_symbols + english_letters + numbers
-# letters = "ぁぃぅぇぉっゃゅょひふへほまみむめもやゆよらりるれろわんにゃんみゃん"
-n_letters = len(letters)
-
 ascii_grid = [[" " for i in range(grid_width)] for j in range(grid_height)]
 og_grid = [[" " for i in range(grid_width)] for j in range(grid_height)]
 
-
-##### Initialize the grid #####
-
-
-# start_height = 1 for common start
-# start_height = grid_height for random start
 start_height = 1 if common_start else grid_height
 class_arr = [
     Digit(randint(0, grid_width - 1), randint(0, start_height - 1))
     for i in range(max_lines)
 ]
 
+window_size = grid_height * grid_width
+
 # Main loop
 os.system("cls")
 
-show_stats = False
 frame_ctr = 0
 
 target_fps = 60
@@ -186,13 +144,15 @@ start_t = time()
 fps = 0
 
 # Set the right command line size
-os.system(f"mode con: cols={grid_width} lines={grid_height+2}")
+if not show_stats:
+    os.system(f"mode con: cols={grid_width} lines={grid_height+2}")
+else:
+    os.system(f"mode con: cols={grid_width} lines={grid_height+7}")
+
 
 while True:
     frame_ctr += 1
     frame_start_t = time()
-
-    move(0, 0)
 
     for elem in class_arr:
         elem.update()
@@ -211,16 +171,24 @@ while True:
         start_t = time()
 
     if show_stats:
+        move(grid_height + 2, 0)
         print(f"{cl_primary}Target FPS = {target_fps}")
-        print(f"{cl_primary}Uncapped FPS = {inf_fps}")
+        print(f"{cl_primary}Uncapped FPS / Update only = {inf_fps}")
         print(f"{cl_primary}Smooth FPS = {fps}")
         print(
             f"{cl_primary}Target mSPF = {seconds_per_frame*1000}, Attained mSPF = {dif*1000}"
         )
 
-    if dif < seconds_per_frame:
-        sleep(seconds_per_frame - dif)
+    if (match_target and dif < seconds_per_frame) or window_size < window_threshold:
+        # print(match_target and dif < seconds_per_frame)
+        # print(window_size < window_threshold)
+        # print("sleeping")
+
+        sleep(0.6 * (seconds_per_frame - dif))
+
     print_start_t = time()
+    move(0, 0)
+
     array_printer(ascii_grid)
     print_end_t = time()
 
