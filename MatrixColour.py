@@ -1,6 +1,7 @@
 from random import randint
 from time import sleep, time
 import colorama as cl
+from colors import *
 import os
 
 # Disable text wrap
@@ -10,24 +11,33 @@ import os
 # # Disable Auto Scroll
 # os.environ["scrolloff"] = "0"
 
-cl_black = cl.Fore.BLACK
-cl_blue = cl.Fore.BLUE
-cl_cyan = cl.Fore.CYAN
-cl_green = cl.Fore.GREEN
-cl_lightblack = cl.Fore.LIGHTBLACK_EX
-cl_lightblue = cl.Fore.LIGHTBLUE_EX
-cl_lighcyan = cl.Fore.LIGHTCYAN_EX
-cl_lightgreen = cl.Fore.LIGHTGREEN_EX
-cl_lightmagenta = cl.Fore.LIGHTMAGENTA_EX
-cl_lightred = cl.Fore.LIGHTRED_EX
-cl_lightwhite = cl.Fore.LIGHTWHITE_EX
-cl_lightyellow = cl.Fore.LIGHTYELLOW_EX
-cl_magenta = cl.Fore.MAGENTA
-cl_red = cl.Fore.RED
-cl_reset = cl.Fore.RESET
-cl_white = cl.Fore.WHITE
-cl_yellow = cl.Fore.YELLOW
 
+# Monospace letter sizes
+letter_height = 20
+letter_width = 10
+
+##############################################################
+######################### Settings ###########################
+common_start = True
+
+
+##############################################################
+####################### GridDimensions #######################
+
+grid_width = 150
+grid_height = 80
+grid_height = int(grid_height * letter_width // letter_height)
+
+####################### GridDimensions #######################
+##############################################################
+
+#############################################################
+####################### Color Configs #######################
+cl_primary = cl_white
+trail_prim = cl_lightgreen
+trail_sec = cl_green
+####################### Color Configs #######################
+#############################################################
 
 cl.init()
 print("\033[?25l", end="")
@@ -136,10 +146,6 @@ class Digit:
         # self.colour()
 
 
-letter_height = 20
-letter_width = 10
-
-
 ##### Avoid these character sets #####
 hebrew = "אבגדהוזחטיכלמננסעפצקרשת"
 korean = "ㄱㄲㄴㄷㄸㄹㅁㅂㅃㅅㅆㅇㅈㅉㅊㅋㅌㅍㅎㅏㅐㅑㅒㅓㅔㅕㅖㅗㅚㅛㅜㅠㅡㅢㅣ"
@@ -156,25 +162,6 @@ letters = greek + cyrillic + unique_english + kb_symbols + english_letters + num
 # letters = "ぁぃぅぇぉっゃゅょひふへほまみむめもやゆよらりるれろわんにゃんみゃん"
 n_letters = len(letters)
 
-##############################################################
-####################### GridDimensions #######################
-
-grid_width = 150
-grid_height = 80
-grid_height = int(grid_height * letter_width // letter_height)
-
-####################### GridDimensions #######################
-##############################################################
-
-
-#############################################################
-####################### Color Configs #######################
-cl_primary = cl_white
-trail_prim = cl_lightgreen
-trail_sec = cl_green
-####################### Color Configs #######################
-#############################################################
-
 ascii_grid = [[" " for i in range(grid_width)] for j in range(grid_height)]
 og_grid = [[" " for i in range(grid_width)] for j in range(grid_height)]
 
@@ -184,7 +171,7 @@ max_lines = int(grid_width * 0.8)
 
 # start_height = 1 for common start
 # start_height = grid_height for random start
-start_height = 1
+start_height = 1 if common_start else grid_height
 class_arr = [
     Digit(randint(0, grid_width - 1), randint(0, start_height - 1))
     for i in range(max_lines)
