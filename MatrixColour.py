@@ -17,27 +17,23 @@ letter_height = 20
 letter_width = 10
 
 ##############################################################
-######################### Settings ###########################
-common_start = True
-
-
-##############################################################
 ####################### GridDimensions #######################
-
 grid_width = 150
 grid_height = 80
 grid_height = int(grid_height * letter_width // letter_height)
 
-####################### GridDimensions #######################
-##############################################################
 
 #############################################################
 ####################### Color Configs #######################
 cl_primary = cl_white
 trail_prim = cl_lightgreen
 trail_sec = cl_green
-####################### Color Configs #######################
-#############################################################
+
+
+##############################################################
+######################### Settings ###########################
+common_start = True
+max_lines = int(grid_width * 0.8)
 
 cl.init()
 print("\033[?25l", end="")
@@ -167,7 +163,7 @@ og_grid = [[" " for i in range(grid_width)] for j in range(grid_height)]
 
 
 ##### Initialize the grid #####
-max_lines = int(grid_width * 0.8)
+
 
 # start_height = 1 for common start
 # start_height = grid_height for random start
