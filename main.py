@@ -34,7 +34,7 @@ class Digit:
         self.pos_float = pos
         self.pos = int(self.pos_float)
         self.speed = randint(40, 100)
-        self.speed /= 150
+        self.speed /= speed_factor
         self.max_length = randint(int(0.2 * grid_height), int(0.7 * grid_height))
 
         self.letter = letters[randint(0, n_letters - 1)]

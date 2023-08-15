@@ -29,7 +29,8 @@ greek = "αβγδεζηθικλμνξοπρστυφχψωΑΒΓΔΕΖΗΘΙΚΛ�
 cyrillic = "АаБбВвГгДдЕеЁёЖжЗзИиЙйКкЛлМмНнОоПпРрСсТтУуФфХхЦцЧчШшЩщЪъЫыЬьЭэЮюЯя"
 unique_english = "ůŭŧńşźżñçéáíóúàèìòùœžšžćčđłńó÷øðþæıȷȷłńó÷øðþæ"
 kb_symbols = "~!@#$%^&*()_+-={}[]|\\;:<>?/"
-english_letters = "qwertyuiopasdfghjklzxcvbnm"
+english_letters = "qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM"
 numbers = "1234567890"
+
 letters = greek + cyrillic + unique_english + kb_symbols + english_letters + numbers
 n_letters = len(letters)
