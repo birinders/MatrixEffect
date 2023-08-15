@@ -5,8 +5,8 @@ letter_height = 20
 letter_width = 10
 
 ####################### GridDimensions #######################
-grid_width = 160
-grid_height = 100
+grid_width = 110
+grid_height = 50
 grid_height = int(grid_height * letter_width // letter_height)
 
 
