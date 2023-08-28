@@ -19,6 +19,19 @@ You can enable/disable debugging options like Performance Metrics in the same fi
 3. Extremely lightweight and performance friendly.
 
 ## Matrix Rain-
+<p align="center">
+  <img src="https://github.com/birinders/MatrixEffect/assets/102192983/6f09ba7d-b7e7-413a-b12c-b4ef4f4b9e7c" alt="Green Matrix Rain" width="800">
+  <br>
+  <sub>The default Matrix Rain</sub>
+  <br><br><br>
+  <img src="https://github.com/birinders/MatrixEffect/assets/102192983/c46b24b7-1ec3-440d-a5fb-590beb607e35" alt="Windows Terminal" width="800">
+  <br>
+  <sub>Ş̸̡̣̏̓̚o̶̘̻̓̍m̴̢͓̾̔͠ë̸̳̲̼́t̷̻̜̺̽̍̊h̶͎̬̎̐ȉ̴̯̭̙͋͛n̵̜͓̩̎̽̀g̷̺͍̩̈̽ ̸̧͖̾̈́͘i̶̜͊͛̚s̷̥̋̓ ̵̨͊̍̀w̵̜̩͉̔̓͗r̷̼̯͓̐͋̓o̴̭̘͔̽͑n̷͕̭̲̈́̾́g̷̹̠̀̀</sub>
+  
+</p>
+<!--![C__Windows_System32_cmd-exe - python main-py 2023-08-16 03-48-17](https://github.com/birinders/MatrixEffect/assets/102192983/6f09ba7d-b7e7-413a-b12c-b4ef4f4b9e7c)-->
+<!--![C__Windows_System32_cmd-exe - python main-py 2023-08-16 03-50-45](https://github.com/birinders/MatrixEffect/assets/102192983/c46b24b7-1ec3-440d-a5fb-590beb607e35)-->
+
 
 
 ### Accolades-
